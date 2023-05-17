@@ -33,6 +33,7 @@ const { shop, archive, events, about } = Astro.props;
     list-style: none;
     display: flex;
     gap: 50px;
+    margin: auto 0;
   }
 
   a {
@@ -40,7 +41,7 @@ const { shop, archive, events, about } = Astro.props;
     color: var(--kiddushblack);
     font-family: Montserrat, sans-serif;
 
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 500;
   }
 
@@ -51,23 +52,20 @@ const { shop, archive, events, about } = Astro.props;
 
   svg {
     fill: var(--kiddushblack);
+    width: 25px;
   }
   svg:hover {
     fill: var(--primary);
     transition: 0.2s ease-in-out;
   }
 
-  img {
-  }
-
   .logo {
-    width: 70px;
+    width: 60px;
   }
 
   .cart,
   .search {
-    width: 31px;
-    margin: auto;
+    margin: auto 0;
   }
 
   header {
@@ -88,7 +86,7 @@ const { shop, archive, events, about } = Astro.props;
     color: var(--primary);
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     header {
       background-color: deeppink;
     }
