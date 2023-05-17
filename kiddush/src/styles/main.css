@@ -53,6 +53,7 @@ h1 {
   font-family: Montserrat, sans-serif;
   font-weight: 600;
   color: var(--kiddushblack);
+  text-align: center;
 }
 h1#landing {
   font-family: "baskerville-urw", serif;
@@ -89,6 +90,7 @@ h4 {
 @media (min-width: 800px) {
   h1 {
     font-size: 95px;
+    margin-top: 103px;
   }
 
   p {
