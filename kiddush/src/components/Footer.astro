@@ -28,7 +28,7 @@
     <p><a href="tel:+4528158355">+45 28 15 83 55</a></p>
     <p>CVR: 41883723</p>
   </section>
-  <section>
+  <section class="newsletter">
     <h4>JOIN OUR NEWSLETTER</h4>
     <input placeholder="E-mail" />
     <button>Confirm</button>
@@ -38,11 +38,32 @@
 <style>
   footer {
     background-color: var(--kiddushblack);
+    padding: 14px;
   }
 
   footer p,
   footer a,
   footer h4 {
     color: var(--background);
+  }
+
+  h4 {
+    margin-top: 40px;
+    margin-bottom: 8px;
+  }
+
+  .newsletter {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    border: 2px solid var(--background);
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: var(--kiddushblack);
+  }
+
+  button {
   }
 </style>
