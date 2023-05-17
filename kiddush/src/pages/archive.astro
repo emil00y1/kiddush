@@ -1,5 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
-<MainLayout title="ALL BEERS EVER BREWED BY KIDDUSH" />
+<MainLayout title="ALL BEERS EVER BREWED BY KIDDUSH">
+  <Header slot="header" archive="active" />
+</MainLayout>
