@@ -17,13 +17,13 @@ const { title, id } = Astro.props;
   </head>
 
   <body>
-    <Header />
+    <slot name="header" />
     <main>
       <section>
         <h1 id={id}>{title}</h1>
         <slot />
       </section>
-      <slot />
+      <slot name="main" />
     </main>
     <Footer />
   </body>
