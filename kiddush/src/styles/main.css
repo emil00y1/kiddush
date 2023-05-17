@@ -22,11 +22,12 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+  background-color: var(--background);
 }
 
 main {
   max-width: 1170px;
-  background-color: var(--background);
+  margin: auto;
 }
 
 img {
