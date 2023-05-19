@@ -3,9 +3,14 @@ const { shop, archive, events, about } = Astro.props;
 ---
 
 <header>
+  <div class="hamburger">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
   <a href="/" class="logo"><img src="img/logo.svg" alt="logo" /></a>
   <nav>
-    <ul>
+    <ul class="navmenu">
       <li><a class={shop} href="/shop">SHOP</a></li>
       <li><a class={archive} href="/archive">BEER ARCHIVE</a></li>
       <li><a class={events} href="/events">EVENTS</a></li>
@@ -85,10 +90,70 @@ const { shop, archive, events, about } = Astro.props;
   .active {
     color: var(--primary);
   }
+  .hamburger {
+    display: none;
+    cursor: pointer;
+  }
+  .bar {
+    display: block;
+    width: 16px;
+    height: 3.5px;
+    margin: 15px auto;
+
+    transition: all 0.3s ease-in-out;
+    background-color: var(--kiddushblack);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    border-radius: 10px;
+  }
 
   @media (max-width: 900px) {
-    header {
-      background-color: deeppink;
+    .hamburger {
+      display: block;
+    }
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+      transform: translateY(20px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-17px) rotate(-45deg);
+    }
+    .navitem {
+      margin: 16px 0;
+    }
+
+    .navmenu.active {
+      left: 0;
+    }
+    .displaynone {
+      display: none;
+    }
+
+    .navmenu {
+      gap: 0;
+      flex-direction: column;
+      position: fixed;
+      background-color: var(--primary);
+      color: var(--background);
     }
   }
 </style>
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".navmenu");
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".navlink").forEach((n) =>
+    n.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    })
+  );
+</script>
