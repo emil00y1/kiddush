@@ -68,6 +68,7 @@ h1 {
   color: var(--kiddushblack);
   text-align: center;
   text-transform: capitalize;
+  margin-top: 95px;
 }
 
 h1#landing {
