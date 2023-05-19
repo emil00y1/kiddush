@@ -2,18 +2,33 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Header from "../components/Header.astro";
 import ProductCard from "../components/ProductCard.astro";
+import Banner from "../components/Banner.astro";
+
+const data = await fetch("https://syezauaectamogglkmvc.supabase.co/rest/v1/products?order=id.desc&limit=4", {
+  method: "GET",
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN5ZXphdWFlY3RhbW9nZ2xrbXZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQ0OTcyODUsImV4cCI6MjAwMDA3MzI4NX0.5CbbGAvqETjhd1_tbVm-oa-4F_JHliJV0Xuy_dG2rms",
+  },
+})
+  .then((res) => res.json())
+  .then(showData);
+
+function showData(products) {
+  console.log(products);
+}
 ---
 
 <MainLayout title="SHOP">
   <Header slot="header" shop="active" />
   <section>
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
+    {
+      data.map((products) => {
+        return <ProductCard data={products} />;
+      })
+    }
   </section>
+  <Banner />
 </MainLayout>
 
 <style>

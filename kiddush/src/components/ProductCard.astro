@@ -1,18 +1,24 @@
 ---
 import Button from "../components/Button.astro";
+const { data } = Astro.props;
+console.log(data);
 ---
 
 <article>
-  <img src="/img/products/blend.webp" alt="Can of name" />
-  <h3>Pale lager blend</h3>
-  <p class="info">Lager | Dry | Fruity</p>
-  <p class="price">55,00 DKK</p>
+  <img src={`/img/products/${data.img}`} alt={`Can of ${data.name}`} />
+  <h3>{data.name}</h3>
+  <p class="info">{data.type} | {data.style}</p>
+  <p class="price">{data.price},00 DKK</p>
   <Button text="Add to cart" href="#" type="cart" />
 </article>
 
 <style>
+  article {
+    padding-bottom: 60px;
+  }
   h3 {
     text-align: center;
+    padding-bottom: 10px;
   }
   p {
     text-align: center;
@@ -24,13 +30,16 @@ import Button from "../components/Button.astro";
   }
   .info {
     color: var(--text2);
+    padding-bottom: 6px;
   }
   .price {
     color: var(--text1);
+    padding-bottom: 12px;
   }
 
   img {
     width: 70%;
     margin: 0 auto;
+    padding-bottom: 16px;
   }
 </style>
