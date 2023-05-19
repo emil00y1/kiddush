@@ -8,6 +8,7 @@ const { shop, archive, events, about } = Astro.props;
     <span class="bar"></span>
     <span class="bar"></span>
   </div>
+
   <a href="/" class="logo"><img src="img/logo.svg" alt="logo" /></a>
   <nav>
     <ul class="navmenu">
@@ -107,7 +108,7 @@ const { shop, archive, events, about } = Astro.props;
     padding: 0 24px;
     border-radius: 10px;
   }
-
+  /**************************************************************************************************************/
   @media (max-width: 900px) {
     .hamburger {
       display: block;
@@ -139,7 +140,11 @@ const { shop, archive, events, about } = Astro.props;
       background-color: var(--primary);
       color: var(--background);
     }
+    nav {
+      display: none;
+    }
   }
+  /**************************************************************************************************************/
 </style>
 <script>
   const hamburger = document.querySelector(".hamburger");
