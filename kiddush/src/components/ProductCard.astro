@@ -1,0 +1,36 @@
+---
+import Button from "../components/Button.astro";
+---
+
+<article>
+  <img src="/img/products/blend.webp" alt="Can of name" />
+  <h3>Pale lager blend</h3>
+  <p class="info">Lager | Dry | Fruity</p>
+  <p class="price">55,00 DKK</p>
+  <Button text="Add to cart" href="#" type="cart" />
+</article>
+
+<style>
+  h3 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .info {
+    color: var(--text2);
+  }
+  .price {
+    color: var(--text1);
+  }
+
+  img {
+    width: 70%;
+    margin: 0 auto;
+  }
+</style>

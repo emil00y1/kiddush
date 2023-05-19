@@ -69,6 +69,7 @@ h1 {
   text-align: center;
   text-transform: capitalize;
   margin-top: 95px;
+  padding-bottom: 20px;
 }
 
 h1#landing {
