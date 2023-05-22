@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Header from "../components/Header.astro";
 import ProductCard from "../components/ProductCard.astro";
 import Banner from "../components/Banner.astro";
+import Button from "../components/Button.astro";
 
 const data = await fetch("https://syezauaectamogglkmvc.supabase.co/rest/v1/products?order=id.asc", {
   method: "GET",
@@ -15,6 +16,11 @@ const data = await fetch("https://syezauaectamogglkmvc.supabase.co/rest/v1/produ
 
 <MainLayout title="SHOP">
   <Header slot="header" shop="active" />
+  <div class="buttonNavigation">
+    <Button text="Beers and Drinks" href="#" type="filter" />
+    <Button text="Merch" href="#" type="filter" />
+    <Button text="View all" href="#" type="filter" />
+  </div>
   <section>
     {
       data.map((product) => {
@@ -32,4 +38,29 @@ const data = await fetch("https://syezauaectamogglkmvc.supabase.co/rest/v1/produ
     padding: 0 14px;
     gap: 14px;
   }
+  div {
+    display: flex;
+  }
 </style>
+
+<script>
+  const all = document.querySelectorAll(".product_card");
+
+  const buttons = document.querySelectorAll(".buttonNavigation a");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      console.log("ein slay");
+      buttons.forEach((b) => b.classList.remove("filter_active"));
+      btn.classList.add("filter_active");
+      const category = btn.textContent;
+      all.forEach((card) => {
+        console.log("zwei slay");
+        card.classList.add("hide");
+        if (card.dataset.category === category) {
+          console.log("category is WORK");
+          card.classList.remove("hide");
+        }
+      });
+    });
+  });
+</script>
