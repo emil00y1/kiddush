@@ -2,12 +2,38 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Header from "../components/Header.astro";
 import Banner from "../components/Banner.astro";
+import Button from "../components/Button.astro";
 ---
 
 <MainLayout title="KIDDUSH" id="landing">
   <Header slot="header" home="active" />
 
   <Banner />
+  <section class="events_index">
+  <img src="/img/emil_musik_i_lejet.webp" alt="musik i lejet emil"> 
+  <h2> future events</h2>
+  <p>Join us this summer at MUSIK I LEJET, where you can immerse yourself in incredible music and unforgettable moments. Make sure to stop by the Kiddush Beer booth and grab a refreshing pint to complement the fantastic tunes.</p>
+  <br><br>
+  <p>Get ready for an experience that harmonizes the best of music, community, and ice-cold Kiddush beer.</p>
+  
+<Button text="SEE EVENTS" href="/events" type="index extra_margin" />
+
+</section>
 </MainLayout>
 
-<style></style>
+
+
+
+<style>
+  img{
+    width: 100vw;
+  }
+
+  h2{
+    margin: 10px 0px 10px 0px;
+  }
+  p{
+    margin: 0px 10px 0px 10px;
+  }
+
+</style>
