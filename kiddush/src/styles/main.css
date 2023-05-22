@@ -67,7 +67,7 @@ h1 {
   font-weight: 600;
   color: var(--kiddushblack);
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin-top: 95px;
   padding-bottom: 20px;
 }
@@ -85,7 +85,7 @@ h2 {
   font-weight: 600;
   font-size: 37px;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: var(--kiddushblack);
 }
 
@@ -94,7 +94,7 @@ h3 {
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: var(--kiddushblack);
 }
 
@@ -115,7 +115,7 @@ h4 {
   letter-spacing: 0em;
   text-align: left;
   color: var(--kiddushblack);
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 @media (min-width: 450px) {
