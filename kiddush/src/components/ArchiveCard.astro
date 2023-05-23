@@ -3,33 +3,49 @@ const { text, artclass, textclass, title, desc, img } = Astro.props;
 ---
 
 <article class={artclass}>
-  <div class="flex">
-    <img src={`/img/products/${img}.webp`} alt="Limone can" />
-    <div>
-      <h3 class={textclass}>{title}</h3>
-      <p class={textclass}>{desc}</p>
+  <div class="cardheader">
+    <div class="flex">
+      <img class="can" src={`/img/products/${img}.webp`} alt="Beer Can" />
+      <div>
+        <h3 class={textclass}>{title}</h3>
+        <p class={textclass}>{desc}</p>
+      </div>
+    </div>
+    <div class="barbox">
+      <span class={`bar bar1 ${textclass}`}></span>
+      <span class={`bar bar2 ${textclass}`}></span>
     </div>
   </div>
-  <div class="barbox">
-    <span class="bar bar1"></span>
-    <span class="bar bar2"></span>
+  <div class="cardcontent">
+    <img src={`/img/archive/${img}.webp`} alt="Label" />
+    <h2 class="archive">{title}</h2>
   </div>
 </article>
 
 <style>
   article {
+    padding: 14px;
+  }
+  .cardheader {
     display: flex;
     padding: 18px 20px;
     justify-content: space-between;
     align-items: center;
+  }
+  .cardcontent {
+    padding-top: 20px;
   }
   .flex {
     display: flex;
     gap: 22px;
   }
 
-  img {
+  img.can {
     max-width: 40px;
+  }
+
+  h2.archive {
+    text-align: center;
   }
 
   h3 {
@@ -40,6 +56,7 @@ const { text, artclass, textclass, title, desc, img } = Astro.props;
     position: relative;
     width: 40px;
     height: 30px;
+    cursor: pointer;
   }
   .bar {
     display: block;
@@ -56,9 +73,16 @@ const { text, artclass, textclass, title, desc, img } = Astro.props;
     transform: translate(14px, 13px) rotate(-45deg);
   }
 
-  .limone {
+  p.limone,
+  h3.limone {
+    color: #000000;
   }
 
   .limonebg {
+    background-color: #f3efd7;
+  }
+
+  .bar.limone {
+    background-color: #000000;
   }
 </style>
