@@ -1,24 +1,29 @@
 ---
-const { text, artclass, textclass, title, desc, img } = Astro.props;
+const { text, artclass, textclass, title, desc } = Astro.props;
+
+const { data } = Astro.props;
+console.log(data);
 ---
 
-<article class={artclass}>
+<article class={data.slug}>
   <div class="cardheader">
     <div class="flex">
-      <img class="can" src={`/img/products/${img}.webp`} alt="Beer Can" />
+      <img class="can" src={`/img/products/${data.img}.webp`} alt="Beer Can" />
       <div>
-        <h3 class={textclass}>{title}</h3>
-        <p class={textclass}>{desc}</p>
+        <h3 class={data.slug}>{data.name}</h3>
+        <p class={data.slug}>{data.type}</p>
       </div>
     </div>
     <div class="barbox">
-      <span class={`bar bar1 ${textclass}`}></span>
-      <span class={`bar bar2 ${textclass}`}></span>
+      <span class={`bar bar1 ${data.slug}`}></span>
+      <span class={`bar bar2 ${data.slug}`}></span>
     </div>
   </div>
   <div class="cardcontent">
-    <img src={`/img/archive/${img}.webp`} alt="Label" />
-    <h2 class="archive">{title}</h2>
+    <img src={`/img/archive/${data.img}.webp`} alt="Label" />
+    <h2 class={data.slug}>{data.name}</h2>
+    <p class={`type ${data.slug}`}>{data.type}</p>
+    <p class={data.slug}>{data.description}</p>
   </div>
 </article>
 
@@ -34,6 +39,8 @@ const { text, artclass, textclass, title, desc, img } = Astro.props;
   }
   .cardcontent {
     padding-top: 20px;
+    padding-bottom: 60px;
+    display: none;
   }
   .flex {
     display: flex;
@@ -44,12 +51,23 @@ const { text, artclass, textclass, title, desc, img } = Astro.props;
     max-width: 40px;
   }
 
-  h2.archive {
-    text-align: center;
+  h2 {
+    text-align: left;
+    font-style: italic;
+    text-transform: lowercase;
+    font-size: 27px;
+    padding-bottom: 6px;
+    padding-top: 70px;
   }
 
   h3 {
     padding: 14px 0 12px 0;
+  }
+
+  p.type {
+    font-size: 27px;
+    font-style: italic;
+    padding-bottom: 6px;
   }
 
   .barbox {
@@ -72,17 +90,145 @@ const { text, artclass, textclass, title, desc, img } = Astro.props;
   .bar2 {
     transform: translate(14px, 13px) rotate(-45deg);
   }
-
+  /******************************/
   p.limone,
-  h3.limone {
+  h3.limone,
+  h2.limone {
     color: #000000;
   }
 
-  .limonebg {
-    background-color: #f3efd7;
+  article.limone {
+    background-color: #f6f2df;
   }
 
   .bar.limone {
     background-color: #000000;
+  }
+  /******************************/
+
+  p.maple,
+  h3.maple,
+  h2.maple {
+    color: #bdb8b6;
+  }
+
+  article.maple {
+    background-color: #231f20;
+  }
+
+  .bar.maple {
+    background-color: #bdb8b6;
+  }
+
+  /******************************/
+
+  p.againstexpectations,
+  h3.againstexpectations,
+  h2.againstexpectations {
+    color: #2052a4;
+  }
+
+  article.againstexpectations {
+    background-color: #dcdedd;
+  }
+
+  .bar.againstexpectations {
+    background-color: #2052a4;
+  }
+
+  /******************************/
+
+  p.blaest,
+  h3.blaest,
+  h2.blaest {
+    color: #086858;
+  }
+
+  article.blaest {
+    background-color: #fdfdef;
+  }
+
+  .bar.blaest {
+    background-color: #086858;
+  }
+
+  /******************************/
+
+  p.sorachi,
+  h3.sorachi,
+  h2.sorachi {
+    color: #e490be;
+  }
+
+  article.sorachi {
+    background-color: #273471;
+  }
+
+  .bar.sorachi {
+    background-color: #e490be;
+  }
+
+  /******************************/
+
+  p.vabrus,
+  h3.vabrus,
+  h2.vabrus {
+    color: #fddaba;
+  }
+
+  article.vabrus {
+    background-color: #0f3124;
+  }
+
+  .bar.vabrus {
+    background-color: #fddaba;
+  }
+
+  /******************************/
+
+  p.passionfruit,
+  h3.passionfruit,
+  h2.passionfruit {
+    color: #fdfafb;
+  }
+
+  article.passionfruit {
+    background: linear-gradient(180deg, #9e84c1 0%, #a87cb0 26.49%, #c06f96 40.79%, #cc6685 53.57%, #e44a5c 76.28%, #e84050 100%);
+  }
+
+  .bar.passionfruit {
+    background-color: #fdfafb;
+  }
+
+  /******************************/
+
+  p.palelagerblend,
+  h3.palelagerblend,
+  h2.palelagerblend {
+    color: #262223;
+  }
+
+  article.palelagerblend {
+    background-color: #ffffff;
+  }
+
+  .bar.palelagerblend {
+    background-color: #262223;
+  }
+
+  /******************************/
+
+  p.pearlypeach,
+  h3.pearlypeach,
+  h2.pearlypeach {
+    color: #1c1e40;
+  }
+
+  article.pearlypeach {
+    background-color: #fad1c3;
+  }
+
+  .bar.pearlypeach {
+    background-color: #1c1e40;
   }
 </style>
