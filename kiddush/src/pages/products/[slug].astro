@@ -25,10 +25,12 @@ const { myData } = Astro.props;
 
 <MainLayout title="Product Page" id="landing">
   <Header slot="header" />
-  <img src={`/img/products/${myData.img}.webp`} alt={`Can of ${myData.name}`} />
-  <p>{myData.brand}</p>
+  <div class="img_container">
+    <img src={`/img/products/${myData.img}.webp`} alt={`Can of ${myData.name}`} />
+  </div>
+  <p class="brand">{myData.brand}</p>
   <h1>{myData.name}</h1>
-  <p>{myData.price + ",00 DKK"}</p>
+  <p class="price">{myData.price + ",00 DKK"}</p>
   <Button text="ADD TO CART" href="#" type="cart" />
   <p>{myData.description}</p>
   <br />
@@ -40,3 +42,26 @@ const { myData } = Astro.props;
   <br />
   <p>Brewing good beer takes time - enjoy it with care and dedication. Alone, or in good company.</p>
 </MainLayout>
+
+<style>
+  .brand {
+    color: var(--text2);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+  .img_container {
+    max-width: 200px;
+    margin: auto;
+  }
+
+  .price {
+    color: var(--text1);
+    text-align: center;
+    font-size: 24px;
+  }
+  p {
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+</style>
