@@ -30,18 +30,25 @@ console.log(data);
 <style>
   article {
     padding: 14px;
+    max-height: 134px;
+    overflow: hidden;
+  }
+
+  article.active {
+    max-height: 1000px;
   }
   .cardheader {
     display: flex;
-    padding: 18px 20px;
+    padding: 0 20px;
     justify-content: space-between;
     align-items: center;
+    z-index: 3;
   }
   .cardcontent {
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 60px;
-    display: none;
   }
+
   .flex {
     display: flex;
     gap: 22px;
@@ -78,17 +85,46 @@ console.log(data);
   }
   .bar {
     display: block;
-    background-color: black;
     height: 4px;
     width: 26px;
     border-radius: 10px;
     position: absolute;
+    transition: transform 0.3s ease-in-out;
   }
   .bar1 {
     transform: translate(-2px, 13px) rotate(45deg);
   }
   .bar2 {
     transform: translate(14px, 13px) rotate(-45deg);
+  }
+
+  /* .barbox.active .bar1 {
+    width: 52px;
+    transform: translate(-8px, 22px) rotate(135deg);
+  }
+
+  .barbox.active .bar2 {
+    width: 52px;
+    transform: translate(-8px, 22px) rotate(-135deg);
+  } */
+  /* .barbox.active .bar1 {
+    transform: translate(14px, 13px) rotate(45deg);
+  }
+
+  .barbox.active .bar2 {
+    transform: translate(-2px, 13px) rotate(-45deg);
+  } */
+
+  .barbox.active .bar1 {
+    transform: translate(6px, 13px) rotate(45deg);
+  }
+
+  .barbox.active .bar2 {
+    transform: translate(6px, 13px) rotate(-45deg);
+  }
+  .barbox .bar::before,
+  .barbox .bar::after {
+    transition: transform 0.2s ease-in-out;
   }
   /******************************/
   p.limone,
@@ -109,15 +145,15 @@ console.log(data);
   p.maple,
   h3.maple,
   h2.maple {
-    color: #bdb8b6;
+    color: #ffffff;
   }
 
   article.maple {
-    background-color: #231f20;
+    background-color: #1d1d1b;
   }
 
   .bar.maple {
-    background-color: #bdb8b6;
+    background-color: #ffffff;
   }
 
   /******************************/
@@ -125,15 +161,15 @@ console.log(data);
   p.againstexpectations,
   h3.againstexpectations,
   h2.againstexpectations {
-    color: #2052a4;
+    color: #254798;
   }
 
   article.againstexpectations {
-    background-color: #dcdedd;
+    background-color: #e4e5e4;
   }
 
   .bar.againstexpectations {
-    background-color: #2052a4;
+    background-color: #254798;
   }
 
   /******************************/
@@ -141,15 +177,15 @@ console.log(data);
   p.blaest,
   h3.blaest,
   h2.blaest {
-    color: #086858;
+    color: #0c6756;
   }
 
   article.blaest {
-    background-color: #fdfdef;
+    background-color: #fefdf2;
   }
 
   .bar.blaest {
-    background-color: #086858;
+    background-color: #0c6756;
   }
 
   /******************************/
@@ -157,15 +193,15 @@ console.log(data);
   p.sorachi,
   h3.sorachi,
   h2.sorachi {
-    color: #e490be;
+    color: #ebc8e0;
   }
 
   article.sorachi {
-    background-color: #273471;
+    background-color: #2a2f6a;
   }
 
   .bar.sorachi {
-    background-color: #e490be;
+    background-color: #ebc8e0;
   }
 
   /******************************/
@@ -173,15 +209,15 @@ console.log(data);
   p.vabrus,
   h3.vabrus,
   h2.vabrus {
-    color: #fddaba;
+    color: #fddfc3;
   }
 
   article.vabrus {
-    background-color: #0f3124;
+    background-color: #1c3628;
   }
 
   .bar.vabrus {
-    background-color: #fddaba;
+    background-color: #fddfc3;
   }
 
   /******************************/
@@ -232,3 +268,14 @@ console.log(data);
     background-color: #1c1e40;
   }
 </style>
+
+<script>
+  const arrow = document.querySelector(".barbox");
+  const content = document.querySelector("article");
+
+  arrow.addEventListener("click", function () {
+    console.log("slayed");
+    this.classList.toggle("active");
+    content.classList.toggle("active");
+  });
+</script>
