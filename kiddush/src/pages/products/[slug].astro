@@ -29,12 +29,15 @@ const { myData } = Astro.props;
     <img src={`/img/products/${myData.img}.webp`} alt={`Can of ${myData.name}`} />
   </div>
   <p class="brand">{myData.brand}</p>
-  <h1>{myData.name}</h1>
+  <h1 id="h1_slug">{myData.name}</h1>
   <p class="price">{myData.price + ",00 DKK"}</p>
-  <Button text="ADD TO CART" href="#" type="cart" />
+  <div>
+    <input type="number" />
+    <Button text="ADD TO CART" href="#" type="cart" />
+  </div>
   <p>{myData.description}</p>
   <br />
-  <p>Ingredients</p>
+  <p class="ingredients">Ingredients</p>
   <p>{myData.ingredients}</p>
   <p>{myData.type}</p>
   <p>Netto 500ml</p>
@@ -49,16 +52,25 @@ const { myData } = Astro.props;
     text-align: center;
     text-transform: uppercase;
     font-size: 20px;
+    margin-top: 20px;
   }
   .img_container {
-    max-width: 200px;
+    max-width: 151px;
     margin: auto;
+  }
+
+  #h1_slug {
+    margin-top: 0px;
   }
 
   .price {
     color: var(--text1);
     text-align: center;
     font-size: 24px;
+  }
+
+  .ingredients {
+    font-weight: 700;
   }
   p {
     margin-left: 14px;
