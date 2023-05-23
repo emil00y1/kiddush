@@ -6,7 +6,7 @@ import Button from "../components/Button.astro";
 import ProductCard2 from "../components/ProductCard2.astro";
 
 const data = await fetch(
-  "https://syezauaectamogglkmvc.supabase.co/rest/v1/products?order=id.asc&category=eq.Beers%20and%20Drinks&comingsoon=eq.false",
+  "https://syezauaectamogglkmvc.supabase.co/rest/v1/products?order=id.asc&category=eq.Beers%20and%20Drinks",
   {
     method: "GET",
     headers: {
@@ -15,6 +15,9 @@ const data = await fetch(
     },
   }
 ).then((res) => res.json());
+
+const comingSoonData = data.filter((item) => item.comingsoon === true);
+const notComingSoonData = data.filter((item) => item.comingsoon === false);
 ---
 
 <MainLayout title="KIDDUSH" id="landing">
@@ -38,7 +41,7 @@ const data = await fetch(
     </div>
     <div class="cards">
       {
-        data.map((product) => {
+        notComingSoonData.map((product) => {
           return <ProductCard2 data={product} />;
         })
       }
@@ -59,9 +62,48 @@ const data = await fetch(
       >
     </div>
   </div>
-
   <Banner />
   <h2>Coming Soon</h2>
+  <div class="slider">
+    <div class="control previous">
+      <svg
+        class="chevron"
+        xmlns="http://www.w3.org/2000/svg"
+        width="36"
+        height="36"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-chevron-left"
+        ><polyline points="15 18 9 12 15 6"></polyline></svg
+      >
+    </div>
+    <div class="cards">
+      {
+        comingSoonData.map((product) => {
+          return <ProductCard2 data={product} />;
+        })
+      }
+    </div>
+    <div class="control next">
+      <svg
+        class="chevron"
+        xmlns="http://www.w3.org/2000/svg"
+        width="36"
+        height="36"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><polyline points="9 18 15 12 9 6"></polyline></svg
+      >
+    </div>
+  </div>
   <section class="events_index">
     <img src="/img/emil_musik_i_lejet.webp" alt="musik i lejet emil" />
     <h2>future events</h2>
@@ -139,49 +181,54 @@ const data = await fetch(
 </style>
 
 <script>
-  const slider = document.querySelector(".slider");
-  const cardsContainer = document.querySelector(".cards");
-  const previousBtn = document.querySelector(".previous");
-  const nextBtn = document.querySelector(".next");
-  const cardWidth =
-    cardsContainer.offsetWidth +
-    parseFloat(getComputedStyle(cardsContainer.firstElementChild).marginRight);
+  const sliders = document.querySelectorAll(".slider");
 
-  previousBtn.addEventListener("click", () => {
-    const scrollAmount =
-      Math.floor(cardsContainer.scrollLeft / cardWidth - 1) * cardWidth;
-    cardsContainer.scrollTo({
-      left: scrollAmount,
-      behavior: "smooth",
-    });
-  });
+  sliders.forEach((slider) => {
+    const cardsContainer = slider.querySelector(".cards");
+    const previousBtn = slider.querySelector(".previous");
+    const nextBtn = slider.querySelector(".next");
+    const cardWidth =
+      cardsContainer.offsetWidth +
+      parseFloat(
+        getComputedStyle(cardsContainer.firstElementChild).marginRight
+      );
 
-  nextBtn.addEventListener("click", () => {
-    const maxScrollLeft =
-      cardsContainer.scrollWidth - cardsContainer.offsetWidth;
-    const currentScrollLeft = cardsContainer.scrollLeft;
-    const scrollAmount = currentScrollLeft + cardWidth;
-
-    if (scrollAmount > maxScrollLeft) {
-      cardsContainer.scrollTo({
-        left: 0,
-        behavior: "smooth",
-      });
-    } else {
+    previousBtn.addEventListener("click", () => {
+      const scrollAmount =
+        Math.floor(cardsContainer.scrollLeft / cardWidth - 1) * cardWidth;
       cardsContainer.scrollTo({
         left: scrollAmount,
         behavior: "smooth",
       });
+    });
 
-      // Wait for the scroll animation to finish, then snap to the next product
-      setTimeout(() => {
-        const nextProductIndex = Math.ceil(scrollAmount / cardWidth);
-        const nextScrollLeft = nextProductIndex * cardWidth;
+    nextBtn.addEventListener("click", () => {
+      const maxScrollLeft =
+        cardsContainer.scrollWidth - cardsContainer.offsetWidth;
+      const currentScrollLeft = cardsContainer.scrollLeft;
+      const scrollAmount = currentScrollLeft + cardWidth;
+
+      if (scrollAmount > maxScrollLeft) {
         cardsContainer.scrollTo({
-          left: nextScrollLeft,
+          left: 0,
           behavior: "smooth",
         });
-      }, 1); // Adjust the delay if needed
-    }
+      } else {
+        cardsContainer.scrollTo({
+          left: scrollAmount,
+          behavior: "smooth",
+        });
+
+        // Wait for the scroll animation to finish, then snap to the next product
+        setTimeout(() => {
+          const nextProductIndex = Math.ceil(scrollAmount / cardWidth);
+          const nextScrollLeft = nextProductIndex * cardWidth;
+          cardsContainer.scrollTo({
+            left: nextScrollLeft,
+            behavior: "smooth",
+          });
+        }, 1); // Adjust the delay if needed
+      }
+    });
   });
 </script>
