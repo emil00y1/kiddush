@@ -4,10 +4,10 @@ const { shop, archive, events, about, home } = Astro.props;
 
 <header>
   <a href="/" class="logo"><img src="/img/logo.svg" alt="logo" /></a>
+  <div class="bargemenu">
+    <div class="bar"></div>
+  </div>
   <div class="navright">
-    <div class="bargemenu">
-      <div class="bar"></div>
-    </div>
     <nav>
       <ul class="navmenu">
         <li class="homenav"><a class={home} href="/">KIDDUSH</a></li>
@@ -123,8 +123,9 @@ const { shop, archive, events, about, home } = Astro.props;
       height: 20px;
       cursor: pointer;
       position: relative;
-      margin: auto 0;
+      margin: auto 70px auto 0;
       z-index: 1;
+      order: -1;
     }
 
     .bargemenu .bar {
