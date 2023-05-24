@@ -23,16 +23,25 @@ export async function getStaticPaths() {
 const { myData } = Astro.props;
 ---
 
-<MainLayout title="Product Page" id="landing">
+<MainLayout id="landing">
   <Header slot="header" />
+  <div class="back_container">
+    <span class="arrow"></span>
+    <span class="streg"></span>
+    <p class="back">Back</p>
+  </div>
   <div class="img_container">
     <img src={`/img/products/${myData.img}.webp`} alt={`Can of ${myData.name}`} />
   </div>
   <p class="brand">{myData.brand}</p>
   <h1 id="h1_slug">{myData.name}</h1>
   <p class="price">{myData.price + ",00 DKK"}</p>
-  <div>
-    <input type="number" />
+  <div class="antal">
+    <div class="container">
+      <span class="next" onclick="nextNum()"></span>
+      <span class="prev" onclick="prevNum()"></span>
+      <div id="box"></div>
+    </div>
     <Button text="ADD TO CART" href="#" type="index" />
   </div>
   <p>{myData.description}</p>
@@ -47,6 +56,39 @@ const { myData } = Astro.props;
 </MainLayout>
 
 <style>
+  .back_container {
+    position: relative;
+    display: flex;
+  }
+  .back_container .arrow {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid rgb(0, 0, 0);
+    border-left: 2px solid rgb(0, 0, 0);
+    transform: translateY(-50%) rotate(315deg);
+  }
+
+  .back_container .streg {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    display: block;
+    width: 24px;
+    height: 12px;
+    border-top: 2px solid rgb(0, 0, 0);
+  }
+
+  .back {
+    position: absolute;
+    left: 50px;
+    top: -2px;
+  }
+
   .brand {
     color: var(--text2);
     text-align: center;
@@ -69,6 +111,58 @@ const { myData } = Astro.props;
     font-size: 24px;
   }
 
+  .antal {
+    display: flex;
+    padding: 14px 14px 14px 14px;
+  }
+  .container {
+    width: 111px;
+    height: 50px;
+    border-radius: 11px;
+    border: 2px solid;
+  }
+
+  .container .next {
+    position: relative;
+    top: 50%;
+    left: 80%;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid rgb(0, 0, 0);
+    border-left: 2px solid rgb(0, 0, 0);
+    z-index: 1;
+    cursor: pointer;
+    transform: translateY(-50%) rotate(135deg);
+  }
+
+  .container .prev {
+    position: relative;
+    top: 25%;
+    left: 10%;
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid rgb(0, 0, 0);
+    border-left: 2px solid rgb(0, 0, 0);
+    z-index: 1;
+    cursor: pointer;
+    transform: translateY(-50%) rotate(315deg);
+  }
+
+  #box {
+    font-family: Montserrat;
+    display: block;
+    text-align: center;
+    line-height: 0px;
+    font-size: 30px;
+    /* display: none; */
+  }
+
+  #box span:nth-child(1) {
+    display: initial;
+  }
+
   .ingredients {
     font-weight: 700;
   }
@@ -77,3 +171,26 @@ const { myData } = Astro.props;
     margin-right: 14px;
   }
 </style>
+
+<script type="text/javascript">
+  const numbers = document.getElementById("box");
+  for (i = 1; i < 10; i++) {
+    const span = document.createElement("span");
+    span.textContent = i;
+    numbers.appendChild(span);
+  }
+  const num = numbers.getElementsByTagName("span");
+  const index = 1;
+
+  function nextNum() {
+    num[index].style.display = "none";
+    index = (index + 1) % num.length;
+    num[index].style.display = "initial";
+  }
+
+  function prevNum() {
+    num[index].style.display = "none";
+    index = (index - 1 + num.length) % num.length;
+    num[index].style.display = "initial";
+  }
+</script>
